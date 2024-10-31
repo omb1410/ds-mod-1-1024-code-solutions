@@ -18,9 +18,9 @@ def letters_to_symbols(s):
       pre_char = char
     else:
       count += 1
-  ret_str += str(count) + s[-1]
+  ret_str += str(count) + s[:1]
   return ret_str
 
-s = "AAAABBBCCDAAA"
+s = "AAAABBBCCDA"
 letters_to_symbols(s)
 
