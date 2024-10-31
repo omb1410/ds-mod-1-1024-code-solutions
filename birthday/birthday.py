@@ -12,8 +12,10 @@ import datetime as dt
 def calculate_age(birthdate):
   today = dt.date.today()
   age = today.year - birthdate.year
+  if (today.month, today.day) < (birthdate.month, birthdate.day):
+    age -= 1
   return age
 
-birthdate = dt.date(1999, 10, 14)
+birthdate = dt.date(1999, 11, 1)
 calculate_age(birthdate)
 
