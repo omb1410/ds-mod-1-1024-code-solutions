@@ -25,7 +25,7 @@ df_mtcars.equals(df_new_mtcars)
 
 """u.data"""
 
-df_u_data = pd.read_csv('u.data', sep= "\t")
+df_u_data = pd.read_csv('u.data', sep= "\t", header = None)
 
 df_u_data
 
@@ -53,19 +53,17 @@ df_beer.equals(df_new_beer)
 
 """u.item"""
 
-df_u_item = pd.read_csv('u.item', sep = "|", encoding='latin-1')
+df_u_item = pd.read_csv('u.item', sep = "|", encoding='latin-1', header = None)
 
 df_u_item
 
-df_u_item.to_csv('u_new.item', index=False)
+df_u_item.to_csv('u_new.item')
 
 df_new_u_time = pd.read_csv('u_new.item')
 
 df_new_u_time
 
 df_u_item.equals(df_new_u_time)
-
-
 
 """NHL 2015-16.xlsx"""
 
