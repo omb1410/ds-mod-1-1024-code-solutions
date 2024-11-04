@@ -91,10 +91,10 @@ def read_all_files(file_name):
     df = pd.read_excel(file_name)
 
   elif file_name.endswith('.data'):
-    df = pd.read_csv(file_name, sep= "\t")
+    df = pd.read_csv(file_name, sep= "\t", header = None)
 
   elif file_name.endswith('.item'):
-    df = pd.read_csv(file_name, sep = "|", encoding='latin-1')
+    df = pd.read_csv(file_name, sep = "|", encoding='latin-1', header = None)
 
   elif file_name.endswith('.txt'):
     df = pd.read_csv(file_name, sep = " ")
