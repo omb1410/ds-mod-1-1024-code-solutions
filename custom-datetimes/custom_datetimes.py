@@ -47,6 +47,8 @@ p4
 ex5 = 1616482800
 p5 = datetime.fromtimestamp(ex5).strftime("%Y-%m-%d %H:%M:%S")
 p5
+pp5 = datetime.strptime(p5, "%Y-%m-%d %H:%M:%S")
+pp5
 
 #part 6
 ex6 = "2021-03-23T12:00:53.034-07:00"
