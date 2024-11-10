@@ -29,8 +29,8 @@ from employee;
 
 SELECT Gender,
 		CASE 
-			when Gender = "Female" then "0"
-			when Gender = "Male" then "1"	
+			when Gender = "Female" then 0
+			when Gender = "Male" then 1	
 		END Gender_1
 from employee;		
 
