@@ -19,11 +19,12 @@ ORDER BY id ASC, resource_type DESC
 LIMIT 5;
 
 SELECT COUNT(*) AS numbers_row, 
-COUNT(id) AS id_unique, 
+COUNT(DISTINCT(id)) AS id_unique, 
 COUNT(DISTINCT(severity_type)) AS severity_type_unique
 FROM severity_type st;
 
 SELECT id, log_feature, volume
 from log_feature lf 
 WHERE log_feature = "feature 201"
-AND volume BETWEEN '100' AND '300';
+AND volume BETWEEN 100 AND 300
+ORDER BY volume ASC;
