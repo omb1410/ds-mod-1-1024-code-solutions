@@ -29,10 +29,12 @@ random_loans.head(5)
 loans.sample(10)
 
 #part 7
-loans.value_counts(['loan_status'],['City'])
+loans.value_counts(['loan_status'])
+
+loans.value_counts(['City'])
 
 #part 8
-loans.loc[201]
+loans.iloc[200]
 
 #part 9
 loans[['education']]
@@ -44,7 +46,7 @@ loans[['loan_status']]
 loans.iloc[:,8]
 
 #part 12
-loans.iloc[[3,7]]
+loans.iloc[2:7]
 
 #part 13
 loans.iloc[:,-3:]
