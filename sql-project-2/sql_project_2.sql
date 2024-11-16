@@ -39,7 +39,7 @@ ORDER BY quantity DESC;
 #5
 SELECT DAYS_EMPLOYED,
 			CASE
-				WHEN DAYS_EMPLOYED > 1 THEN "bad data"
+				WHEN DAYS_EMPLOYED = (SELECT MAX(DAYS_EMPLOYED) FROM train) THEN "bad data"
 				ELSE "normal data"
 			END flag_for_bad_data
 FROM train;
