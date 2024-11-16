@@ -66,14 +66,12 @@ AAPL_min_max
 
 MSFT2 = conn.execute(""" SELECT *
                 FROM stock_MSFT
-                GROUP BY Open
                 HAVING Open > 50
                     """).fetchall()
 MSFT2
 
 AAPL2 = conn.execute(""" SELECT *
                 FROM stock_AAPL
-                GROUP BY Open
                 HAVING Open > 50
                     """).fetchall()
 AAPL2
