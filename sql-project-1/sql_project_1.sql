@@ -5,7 +5,8 @@ CREATE TABLE customer_toan
 				(customer_id smallINT,
 				name VARCHAR(20),
 				location VARCHAR(20),
-				total_expenditure VARCHAR(20)
+				total_expenditure VARCHAR(20),
+				CONSTRAINT pk_customer_toan PRIMARY KEY (customer_id)
 				);
 			
 DESCRIBE customer_toan;
