@@ -114,11 +114,11 @@ def scale_features(X_train, X_test, feature_cols) -> Tuple[pd.DataFrame, pd.Data
 
     # create a StandardScaler object and fit it to the training data with the specified feature columns
     rs = StandardScaler()
-    rs.fit(X_train, X_test)
+    rs.fit(X_train[feature_cols])
 
     # transform the feature columns in both the training and testing datasets
-    X_train[feature_cols] = rs.transform(X_train)
-    X_test[feature_cols] = rs.transform(X_test)
+    X_train[feature_cols] = rs.transform(X_train[feature_cols].copy())
+    X_test[feature_cols] = rs.transform(X_test[feature_cols].copy())
 
     # return the scaled training and testing datasets
     return X_train, X_test
@@ -155,8 +155,8 @@ def transform_target(
 
     # Use the fitted transformer to transform the target variables in both the training and testing datasets
     # note you will have to reshape the target variables to a 2D array before transforming `values.reshape(-1, 1)`
-    y_train = transformer.fit_transform(y_train.values.reshape(-1, 1))
-    y_test = transformer.fit_transform(y_test.values.reshape(-1, 1))
+    y_train = transformer.fit(y_train.values.reshape(-1, 1)).transform(y_train.values.reshape(-1,1))
+    y_test = transformer.transform(y_test.values.reshape(-1, 1))
 
     # return the transformed target variables and the target transformer object
     return y_train, y_test, transformer
@@ -266,7 +266,7 @@ def backward_stepwise_train(X_train, y_train, feature_cols):
     best_models.append(model)
 
     # save the features in the features_list
-    features_list[0] = feature_cols
+    features_list[0] = feature_cols.copy()
 
     # append the rmse to the rmse_list
     rmse_list.append(rmse)
@@ -291,7 +291,7 @@ def backward_stepwise_train(X_train, y_train, feature_cols):
             y_true = target_transformer.inverse_transform(yval.reshape(-1,1))     
             y_preds = target_transformer.inverse_transform(model.predict(xval[features]).reshape(-1,1))
             rmse = np.sqrt(mean_squared_error(y_true, y_preds ))
-            print(rmse)
+            
             # If the current rmse is lower than the best rmse, update the best rmse, worst feature, and best model
             if rmse < best_rmse:
                 best_rmse = rmse
@@ -346,7 +346,7 @@ def build_lasso_model(X_train, y_train, alpha):
     ytrain, yval, target_transformer = transform_target(ytrain, yval)
     
     # Create Lasso object and fit model
-    lasso = Lasso()
+    lasso = Lasso(alpha=alpha)
     model = lasso.fit(xtrain, ytrain)
 
     # Set number of observations (n) and number of non-zero parameters (p)
