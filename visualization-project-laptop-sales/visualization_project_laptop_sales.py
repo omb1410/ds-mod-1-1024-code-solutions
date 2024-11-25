@@ -22,12 +22,12 @@ df.groupby('Contact Sex')['Profit'].sum().plot(kind='bar');
 df_gender = df.groupby('Contact Sex')
 cost_for_gender = df_gender['Profit'].sum()/(df_gender['Our Cost'].sum()+df_gender['Shipping Cost'].sum())
 cost_for_gender.plot(kind='bar')
-#Female should be targeted if business is cash constrained
+#Male should be targeted if business is cash constrained
 
 #3
-cost_for_cust = (df_gender['Sale Price'].sum()+df_gender['Shipping Cost'].sum())
+cost_for_cust = df_gender['Profit'].sum()/(df_gender['Sale Price'].sum()+df_gender['Shipping Cost'].sum())
 cost_for_cust.plot(kind='bar')
-#If consumer is cash-constrained, Female should be targeted
+#If consumer is cash-constrained, Male should be targeted
 
 #4
 df.groupby('Contact Age')['Profit'].sum().plot(kind='bar');
