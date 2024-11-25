@@ -20,21 +20,23 @@ df
 
 import seaborn as sns
 
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler, MaxAbsScaler
 
 #1
 sns.kdeplot(df[['disp']])
 
 mms = MinMaxScaler()
 stds = StandardScaler()
+mabs = MaxAbsScaler()
+rbs = RobustScaler()
 
 df[['disp_minmax']] = mms.fit_transform(df[['disp']])
 
 df[['wt_stds']] = stds.fit_transform(df[['wt']])
 
-df[['hp_stds']] = stds.fit_transform(df[['hp']])
+df[['hp_mabs']] = mabs.fit_transform(df[['hp']])
 
-df[['drat_stds']] = stds.fit_transform(df[['drat']])
+df[['drat_rbs']] = rbs.fit_transform(df[['drat']])
 
 import matplotlib.pyplot as plt
 
@@ -44,9 +46,9 @@ sns.kdeplot(df['disp_minmax'], ax=ax[0,1])
 sns.kdeplot(df['wt'], ax=ax[1,0])
 sns.kdeplot(df['wt_stds'], ax=ax[1,1])
 sns.kdeplot(df['hp'], ax=ax[2,0])
-sns.kdeplot(df['hp_stds'], ax=ax[2,1])
+sns.kdeplot(df['hp_mabs'], ax=ax[2,1])
 sns.kdeplot(df['drat'], ax=ax[3,0])
-sns.kdeplot(df['drat_stds'], ax=ax[3,1])
+sns.kdeplot(df['drat_rbs'], ax=ax[3,1])
 fig.tight_layout()
 
 #2
@@ -94,6 +96,3 @@ df_copy = df.copy()
 df_copy[numeric_data] = norm2.fit_transform(df_copy[numeric_data])
 
 df_copy
-
-
-
